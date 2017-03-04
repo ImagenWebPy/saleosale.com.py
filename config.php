@@ -6,27 +6,27 @@
  * @copyright 2016 imagenwebhq.com
  * @version 1 2016-03-01
  */
-define('URL', 'http://saleosale.com.py/');
-//define('URL', 'http://saleosale.imagenwebhq.com/');
+//define('URL', 'http://saleosale.com.py/');
+define('URL', 'http://localhost/saleosale.com.py/');
 define('LIBS', 'libs/');
-
-/**
- * DESARROLLO
- */
-//define('DB_TYPE', 'mysql');
-//define('DB_HOST', 'localhost');
-//define('DB_NAME', 'saleosale');
-//define('DB_USER', 'root');
-//define('DB_PASS', '');
 
 /**
  * PRODUCCION
  */
+//define('DB_TYPE', 'mysql');
+//define('DB_HOST', 'saleosale.com.py');
+//define('DB_NAME', 'saleosal_e');
+//define('DB_USER', 'saleosal_web');
+//define('DB_PASS', ')OiD20Fbe)X6');
+
+/**
+ * DESARROLLO
+ */
 define('DB_TYPE', 'mysql');
-define('DB_HOST', 'saleosale.com.py');
-define('DB_NAME', 'saleosal_e');
-define('DB_USER', 'saleosal_web');
-define('DB_PASS', ')OiD20Fbe)X6');
+define('DB_HOST', 'localhost');
+define('DB_NAME', 'saleosale');
+define('DB_USER', 'root');
+define('DB_PASS', '');
 
 // Salt utilizado para el hash de la BD
 define('HASH_PASSWORD_KEY', '!@123456789ABCDEFGHIJKLMNOPRSTWYZ[¿]{?}<->');
