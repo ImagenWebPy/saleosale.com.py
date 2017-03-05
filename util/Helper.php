@@ -149,11 +149,12 @@ class Helper {
             <div class="header-service">
                 <div class="container">
                     <div class="row">
-                        <div class="col-lg-3 col-sm-6 col-xs-12">
+                        <!--<div class="col-lg-3 col-sm-6 col-xs-12">
                             <div class="content">
                                 <div class="icon-truck">&nbsp;</div>
-                                <span>Envíos a todo el País</span></div>
-                        </div>
+                                <span>Envíos a todo el País</span>
+                            </div>
+                        </div>-->
                         <div class="col-lg-3 col-sm-6 col-xs-12">
                             <div class="content">
                                 <div class="icon-support">&nbsp;</div>
@@ -2497,5 +2498,14 @@ class Helper {
         $sqlEmails = $this->db->select("select valor from cms_config_sitio ccs where ccs.clave = '$clave'");
         return $sqlEmails[0]['valor'];
     }
-
+    
+    public function getDatosCupon($idPedido){
+        $datos = $this->db->select("SELECT cc.nro_cupon, 
+                                            c.fecha_sorteo,
+                                            (SELECT nombre from pedido p LEFT JOIN pedido_detalle pd on pd.id_pedido = p.id LEFT JOIN producto po on po.id = pd.id_producto where pd.id = cc.id_pedido_detalle limit 1) as producto
+                                    FROM `cupon_cliente` cc
+                                    LEFT JOIN cupon c on c.id = cc.id_cupon
+                                    where cc.id_pedido = $idPedido;");
+        return $datos;
+    }
 }

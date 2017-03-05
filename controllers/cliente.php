@@ -232,6 +232,7 @@ class Cliente extends Controller {
         Session::set('orden', array(
             'id' => $idOrden));
         #cargamos la vista
+        $this->view->id_pedido = $idOrden;
         $this->view->render('header');
         $this->view->render('cliente/ordenes');
         $this->view->render('footer');
