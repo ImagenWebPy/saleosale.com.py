@@ -924,8 +924,6 @@ class Helper {
                                                                                 Número del cupón para el producto $nombre: <strong>$nroCupon</strong>
                                                                             </li>";
         }
-        var_dump($message);
-        die();
         $message .= '</ul>
                                 </td>
                             </tr>
