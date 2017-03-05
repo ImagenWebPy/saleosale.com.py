@@ -57,8 +57,12 @@
                     <div class="box-content box-category">
                         <ul id="magicat">
                             <?php
-                            foreach ($this->categoriasHijas as $item) {
-                                echo $item;
+                            if (!empty($this->categoriasHijas)) {
+                                foreach ($this->categoriasHijas as $item) {
+                                    echo $item;
+                                }
+                            }  else {
+                                echo '<li class="level0- level0 last"><span class="magicat-cat"><a href="#"><span>Sin Categorías</span></a></span> </li>';
                             }
                             ?>
 
