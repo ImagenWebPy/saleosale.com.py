@@ -1,6 +1,8 @@
 <?php
 $helper = new Helper();
 $orden = $this->cargarDatosOrden;
+$id_pedido = $this->id_pedido;
+$cupones = $helper->getDatosCupon($id_pedido);
 ?>
 <section class="main-container col1-layout">
     <div class="main container">
@@ -56,7 +58,11 @@ $orden = $this->cargarDatosOrden;
                                 <h3>Datos del pedido</h3>
                                 <div class="row">
                                     <div class="col-md-6">
-                                        <p class="text-muted"><strong>Fecha del Pedido:</strong> <?php echo date('d-m-Y H:i:s', strtotime($orden['fecha_pedido'])); ?></p> 
+                                        <p class="text-muted"><strong>Fecha del Pedido:</strong> <?php echo date('d-m-Y H:i:s', strtotime($orden['fecha_pedido'])); ?></p>
+                                        <h4>Cupones</h4>
+                                        <?php foreach($cupones as $item): ?>
+                                        <p><strong>Producto:</strong> : <?= $item['producto'] ?> - <strong>Cupon: </strong> <?= $item['nro_cupon'] ?></p>
+                                        <?php endforeach; ?>
                                     </div>
                                     <div class="col-md-6">
                                         <p class="text-muted"><strong>Estado del Pago:</strong> <?= $helper->estadoPago($orden['estado_pago']); ?></p>

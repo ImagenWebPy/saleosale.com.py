@@ -276,6 +276,7 @@ class Cart_Model extends Model {
         $observacion_pedido = $_SESSION['checkout']['observacion_pedido'];
         $estado_pedido = 'Confirmado';
         $estado_pago = 'Pendiente';
+        $helper = new Helper();
         #buscamos las latitudes de la direccion seleccioanada
         //$coordenada = $this->db->select("select map_latitude, map_longitude, map_zoom from direccion_cliente where id = $id_direccion_cliente");
         #insertamos los datos del pedido
@@ -306,28 +307,42 @@ class Cart_Model extends Model {
         ));
         foreach ($carro as $producto) {
             $idProducto = $producto["id"];
+            $cantidad = $producto["cantidad"];
             $this->db->insert('pedido_detalle', array(
                 'id_pedido' => $id_pedido,
                 'id_producto' => $idProducto,
-                'cantidad' => $producto["cantidad"],
+                'cantidad' => $cantidad,
                 'precio' => $producto["precio"]
             ));
+            $lastID = $this->db->lastInsertId();
             #obtenemos el id del cupon
-            $id = $this->db->select("SELECT id FROM cupon WHERE id_producto = $idProducto and fecha_finalizacion >= NOW() and estado = 'ACTIVO'");
-            #INSERTAMOS EN LA TABLA CUPON
-            $nroCupon = $this->getCuponNumber($id[0]['id']);
-            $this->db->insert('cupon_cliente', array(
-                'id_cupon' => $id[0]['id'],
-                'id_cliente' => $id_cliente,
-                'fecha_compra' => date('Y-m-d H:i:s'),
-                'nro_cupon' => $nroCupon,
-                'id_pedido' => $id_pedido
-            ));
-            array_push($_SESSION['cupon']['datos'], array(
-                'id_producto' => $idProducto,
-                'nro_cupon' => $nroCupon
-            ));
+            $id = $this->db->select("SELECT id, fecha_sorteo FROM cupon WHERE id_producto = $idProducto and fecha_finalizacion >= NOW() and estado = 'ACTIVO'");
+            #INSERTAMOS EN LA TABLA CUPON la cantSELECT id FROM cupon WHERE id_producto = $idProducto and fecha_finalizacion >= NOW() and estado = 'ACTIVO'idad de veces que se compro
+
+            for ($i = 1; $i <= $cantidad; $i++) {
+                $nroCupon = $this->getCuponNumber($id[0]['id']);
+                if ($nroCupon == 1) {
+                    #numero cupon = fecha_sorteo + id_producto + 0000 + 1
+                    $nroC = $idProducto . '00000' . $nroCupon;
+                } else {
+                    $nroC = $nroCupon;
+                }
+                $this->db->insert('cupon_cliente', array(
+                    'id_cupon' => $id[0]['id'],
+                    'id_cliente' => $id_cliente,
+                    'fecha_compra' => date('Y-m-d H:i:s'),
+                    'nro_cupon' => $nroC,
+                    'id_pedido' => $id_pedido,
+                    'estado' => 'FALTA PAGO',
+                    'id_pedido_detalle' =>$lastID
+                ));
+                array_push($_SESSION['cupon']['datos'], array(
+                    'id_producto' => $idProducto,
+                    'nro_cupon' => $nroC
+                ));
+            }
         }
+
         #insertamos la imagen de canje si esta cargada
         $imgCanje = (!empty($_SESSION['checkout']['img_canje'])) ? $_SESSION['checkout']['img_canje'] : '';
         if (!empty($imgCanje)) {
@@ -351,9 +366,10 @@ class Cart_Model extends Model {
      * @return int
      */
     private function getCuponNumber($idCupon) {
-        $cupon = $this->db->select("select max(nro_cupon) as nro_cupon
+        $cupon = $this->db->select("select nro_cupon
                                         from cupon_cliente
-                                        WHERE id_cupon = $idCupon");
+                                        WHERE id_cupon = $idCupon
+                                        ORDER BY id desc limit 1");
         if (!empty($cupon[0]['nro_cupon'])) {
             $nro = $cupon[0]['nro_cupon'] + 1;
         } else {
