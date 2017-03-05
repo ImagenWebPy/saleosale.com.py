@@ -1,6 +1,7 @@
 <?php
 $helper = new Helper();
 $carrito = new Carrito();
+$costo_envio = (!empty($this->getCostoEnvio)) ? $helper->getPrecioCarrito($this->getCostoEnvio) : 0;
 ?>
 <div class="main-container col2-right-layout">
     <div class="main container">
@@ -85,7 +86,7 @@ $carrito = new Carrito();
                                                         </tr>
                                                         <tr>
                                                             <td colspan="1" class="a-left"> Costo de Envio </td>
-                                                            <td class="a-right pull-right"><span class="price"><?php echo $helper->getPrecioCarrito($this->getCostoEnvio); ?></span></td>
+                                                            <td class="a-right pull-right"><span class="price"><?php echo $costo_envio ?></span></td>
                                                         </tr>
                                                     </tbody>
                                                 </table>

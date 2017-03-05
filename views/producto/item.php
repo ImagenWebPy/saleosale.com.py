@@ -63,100 +63,100 @@ $precio = $helper->getProductoPrecio($producto['id']);
                                             <p class="special-price"> <span class="price-label">Precio de Oferta</span> <span class="price"> <?php echo $precio['precio_oferta']; ?> </span> </p>
                                         <?php endif; ?>
                                     </div>
-                                    <div class="row">
-                                        <form>
-                                            <div class="col-md-10">
-                                                <div class="col-xs-3">
-                                                    <input type="hidden" value="" name="pre_cu">
-                                                    <input type="hidden" value="12" name="cu_num">
-                                                    <input type="hidden" value="<?= TASA_INTERES; ?>" name="gasto_interes">
-                                                    <input type="hidden" onkeyup="computeForm(this.form)" value="<?php echo $producto['precio']; ?>" class="formulario" size="20" name="principal">
-                                                    <label>Cuotas</label>
-                                                    <select name="cuotas" onchange="computeForm(this.form)" class="form-control" id="cantCuotas">
-                                                        <option value="2">02</option>
-                                                        <option value="3">03</option>
-                                                        <option value="4">04</option>
-                                                        <option value="5">05</option>
-                                                        <option value="6">06</option>
-                                                        <option value="7">07</option>
-                                                        <option value="8">08</option>
-                                                        <option value="9">09</option>
-                                                        <option value="10">10</option>
-                                                        <option value="11">11</option>
-                                                        <option selected="selected" value="12">12</option>
-                                                    </select>
-                                                </div>	
-                                                <div class="col-xs-3">
-                                                    <label>Cantidad </label>
-                                                    <select name="cantidad" onchange="computeForm(this.form)" class="form-control" id="cantItems">
-                                                        <option selected="selected" value="1">01</option>
-                                                        <option value="2">02</option>
-                                                        <option value="3">03</option>
-                                                        <option value="4">04</option>
-                                                        <option value="5">05</option>
-                                                        <option value="6">06</option>
-                                                        <option value="7">07</option>
-                                                        <option value="8">08</option>
-                                                        <option value="9">09</option>
-                                                        <option value="10">10</option>
-                                                        <option value="11">11</option>
-                                                        <option value="12">12</option>
-                                                        <option value="13">13</option>
-                                                        <option value="14">14</option>
-                                                        <option value="15">15</option>
-                                                    </select>
-                                                </div>
-                                                <div class="col-xs-6">
-                                                    <label>Cuotas de:</label>
-                                                    <input type="text" class="form-control" onchange="computeForm(this.form)" readonly="readonly" size="10" name="payment" id="payment" value="<?= $helper->calcularCuotaProducto($producto['precio'], TASA_INTERES); ?>" style=" height: 40px;">
-                                                </div>
-                                            </div>
-                                        </form>
-                                        <div class="">
-                                            <button class="btn btn-success btn-outline" id="solicitarFinanciacion" title="Financiar" type="submit" style="margin-top: 15px; margin-left: 30px;"><span><i class="icon-basket"></i> Solicitar Financiación</span></button>
-                                        </div>
-                                        <div id="div-financiar" class="col-md-5" style="margin-top: 20px; display: none;">
-                                            <form method="POST" action="<?= URL; ?>producto/financiar">
-                                                <div class="form-group">
-                                                    <label for="financiacion[nombre]">Nombre</label>
-                                                    <input type="text" class="form-control" name="financiacion[nombre]" placeholder="Nombre" required>
-                                                </div>
-                                                <div class="form-group">
-                                                    <label for="financiacion[email]">Email</label>
-                                                    <input type="email" class="form-control" name="financiacion[email]" placeholder="Email">
-                                                </div>
-                                                <div class="form-group">
-                                                    <label for="financiacion[telefono]">Teléfono</label>
-                                                    <input type="text" class="form-control" name="financiacion[telefono]" placeholder="Teléfono" required>
-                                                </div>
-                                                <input type="hidden" id="cuotas" name="financiacion[cuotas]" value="">
-                                                <input type="hidden" id="cantidad" name="financiacion[cantidad]" value="">
-                                                <input type="hidden" id="monto_cuota" name="financiacion[monto_cuota]" value="">
-                                                <input type="hidden" name="financiacion[id_producto]" value="<?= $producto['id']; ?>">
-                                                <button type="submit" class="btn btn-block btn-primary" style="">Solicitar</button>
-                                            </form>
-                                        </div>
-                                        <script type="text/javascript">
-                                            $('#solicitarFinanciacion').click(function () {
-                                                $("#div-financiar").fadeIn("slow");
-                                            });
-                                            var canCuotas = $('#cantCuotas');
-                                            $('#cuotas').val(canCuotas.val());
-                                            canCuotas.change(function () {
-                                                $('#cuotas').val(canCuotas.val());
-                                            });
-                                            var canItems = $('#cantItems');
-                                            $('#cantidad').val(canItems.val());
-                                            canItems.change(function () {
-                                                $('#cantidad').val(canItems.val());
-                                            });
-                                            var payment = $('#payment');
-                                            $('#monto_cuota').val(payment.val());
-                                            payment.change(function () {
-                                                $('#monto_cuota').val(payment.val());
-                                            });
-                                        </script>
-                                    </div>
+                                    <!--                                    <div class="row">
+                                                                            <form>
+                                                                                <div class="col-md-10">
+                                                                                    <div class="col-xs-3">
+                                                                                        <input type="hidden" value="" name="pre_cu">
+                                                                                        <input type="hidden" value="12" name="cu_num">
+                                                                                        <input type="hidden" value="<?= TASA_INTERES; ?>" name="gasto_interes">
+                                                                                        <input type="hidden" onkeyup="computeForm(this.form)" value="<?php echo $producto['precio']; ?>" class="formulario" size="20" name="principal">
+                                                                                        <label>Cuotas</label>
+                                                                                        <select name="cuotas" onchange="computeForm(this.form)" class="form-control" id="cantCuotas">
+                                                                                            <option value="2">02</option>
+                                                                                            <option value="3">03</option>
+                                                                                            <option value="4">04</option>
+                                                                                            <option value="5">05</option>
+                                                                                            <option value="6">06</option>
+                                                                                            <option value="7">07</option>
+                                                                                            <option value="8">08</option>
+                                                                                            <option value="9">09</option>
+                                                                                            <option value="10">10</option>
+                                                                                            <option value="11">11</option>
+                                                                                            <option selected="selected" value="12">12</option>
+                                                                                        </select>
+                                                                                    </div>	
+                                                                                    <div class="col-xs-3">
+                                                                                        <label>Cantidad </label>
+                                                                                        <select name="cantidad" onchange="computeForm(this.form)" class="form-control" id="cantItems">
+                                                                                            <option selected="selected" value="1">01</option>
+                                                                                            <option value="2">02</option>
+                                                                                            <option value="3">03</option>
+                                                                                            <option value="4">04</option>
+                                                                                            <option value="5">05</option>
+                                                                                            <option value="6">06</option>
+                                                                                            <option value="7">07</option>
+                                                                                            <option value="8">08</option>
+                                                                                            <option value="9">09</option>
+                                                                                            <option value="10">10</option>
+                                                                                            <option value="11">11</option>
+                                                                                            <option value="12">12</option>
+                                                                                            <option value="13">13</option>
+                                                                                            <option value="14">14</option>
+                                                                                            <option value="15">15</option>
+                                                                                        </select>
+                                                                                    </div>
+                                                                                    <div class="col-xs-6">
+                                                                                        <label>Cuotas de:</label>
+                                                                                        <input type="text" class="form-control" onchange="computeForm(this.form)" readonly="readonly" size="10" name="payment" id="payment" value="<?= $helper->calcularCuotaProducto($producto['precio'], TASA_INTERES); ?>" style=" height: 40px;">
+                                                                                    </div>
+                                                                                </div>
+                                                                            </form>
+                                                                            <div class="">
+                                                                                <button class="btn btn-success btn-outline" id="solicitarFinanciacion" title="Financiar" type="submit" style="margin-top: 15px; margin-left: 30px;"><span><i class="icon-basket"></i> Solicitar Financiación</span></button>
+                                                                            </div>
+                                                                            <div id="div-financiar" class="col-md-5" style="margin-top: 20px; display: none;">
+                                                                                <form method="POST" action="<?= URL; ?>producto/financiar">
+                                                                                    <div class="form-group">
+                                                                                        <label for="financiacion[nombre]">Nombre</label>
+                                                                                        <input type="text" class="form-control" name="financiacion[nombre]" placeholder="Nombre" required>
+                                                                                    </div>
+                                                                                    <div class="form-group">
+                                                                                        <label for="financiacion[email]">Email</label>
+                                                                                        <input type="email" class="form-control" name="financiacion[email]" placeholder="Email">
+                                                                                    </div>
+                                                                                    <div class="form-group">
+                                                                                        <label for="financiacion[telefono]">Teléfono</label>
+                                                                                        <input type="text" class="form-control" name="financiacion[telefono]" placeholder="Teléfono" required>
+                                                                                    </div>
+                                                                                    <input type="hidden" id="cuotas" name="financiacion[cuotas]" value="">
+                                                                                    <input type="hidden" id="cantidad" name="financiacion[cantidad]" value="">
+                                                                                    <input type="hidden" id="monto_cuota" name="financiacion[monto_cuota]" value="">
+                                                                                    <input type="hidden" name="financiacion[id_producto]" value="<?= $producto['id']; ?>">
+                                                                                    <button type="submit" class="btn btn-block btn-primary" style="">Solicitar</button>
+                                                                                </form>
+                                                                            </div>
+                                                                            <script type="text/javascript">
+                                                                                $('#solicitarFinanciacion').click(function () {
+                                                                                    $("#div-financiar").fadeIn("slow");
+                                                                                });
+                                                                                var canCuotas = $('#cantCuotas');
+                                                                                $('#cuotas').val(canCuotas.val());
+                                                                                canCuotas.change(function () {
+                                                                                    $('#cuotas').val(canCuotas.val());
+                                                                                });
+                                                                                var canItems = $('#cantItems');
+                                                                                $('#cantidad').val(canItems.val());
+                                                                                canItems.change(function () {
+                                                                                    $('#cantidad').val(canItems.val());
+                                                                                });
+                                                                                var payment = $('#payment');
+                                                                                $('#monto_cuota').val(payment.val());
+                                                                                payment.change(function () {
+                                                                                    $('#monto_cuota').val(payment.val());
+                                                                                });
+                                                                            </script>
+                                                                        </div>-->
                                 </div>
                                 <div class="ratings">
                                     <div class="rating-box">

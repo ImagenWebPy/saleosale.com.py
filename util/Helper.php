@@ -616,7 +616,7 @@ class Helper {
         }
         $datosCarrito .= '</ul>
                                         <div class="actions">
-                                            <a  href= "' . URL . 'cart/carrito_paso2/" class="btn-checkout" type="button"><span>Comprar</span></A>
+                                            <a  href= "' . URL . 'cart/carrito_comprar/" class="btn-checkout" type="button"><span>Comprar</span></A>
                                             <a href="' . URL . 'cart/carrito_resumen/" class="view-cart" type="button"><span>Ver Carrito</span></a>
                                         </div>
                                     </div>
