@@ -11246,3 +11246,7 @@ select {
     color: inherit;
     transition: all .5s;
 }
+.ofertaTitle{
+    color: #5d5c5c;
+    font-size: 20px;
+}
