@@ -157,6 +157,216 @@ $precio = $helper->getProductoPrecio($producto['id']);
                                                                                 });
                                                                             </script>
                                                                         </div>-->
+                                    <div class="home-welcome">
+                                        <?php if ($producto['fecha_fin'] >= date('Y-m-d H:i:s')): ?>
+                                            <h4 class="ofertaTitle">Esta oferta finaliza en</h4>
+                                            <div class="main-example">
+                                                <div class="countdown-container tiempoRestante" id="main-example">
+                                                    <div class="time weeks flip">
+                                                        <span class="label">sem</span>
+                                                        <span class="count curr top">00</span>
+                                                        <span class="count next top">00</span>
+                                                        <span class="count next bottom">00</span>
+                                                        <span class="count curr bottom">00</span>
+                                                    </div>
+
+                                                    <div class="time days flip">
+                                                        <span class="label">dias</span>
+                                                        <span class="count curr top">00</span>
+                                                        <span class="count next top">00</span>
+                                                        <span class="count next bottom">00</span>
+                                                        <span class="count curr bottom">00</span>
+                                                    </div>
+
+                                                    <div class="time hours flip">
+                                                        <span class="label">horas</span>
+                                                        <span class="count curr top">00</span>
+                                                        <span class="count next top">00</span>
+                                                        <span class="count next bottom">00</span>
+                                                        <span class="count curr bottom">00</span>
+                                                    </div>
+
+                                                    <div class="time minutes flip">
+                                                        <span class="label">min</span>
+                                                        <span class="count curr top">00</span>
+                                                        <span class="count next top">00</span>
+                                                        <span class="count next bottom">00</span>
+                                                        <span class="count curr bottom">00</span>
+
+                                                    </div>
+
+                                                    <div class="time seconds flip">
+                                                        <span class="label">seg</span>
+                                                        <span class="count curr top">00</span>
+                                                        <span class="count next top">00</span>
+                                                        <span class="count next bottom">00</span>
+                                                        <span class="count curr bottom">00</span>
+
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <script type="text/javascript">
+                                                $(window).on('load', function () {
+                                                    var contador = 1;
+                                                    var labels = ['weeks', 'days', 'hours', 'minutes', 'seconds'],
+                                                            //nextYear = (new Date().getFullYear() + 1) + '/01/01',
+                                                            nextYear = '<?= $producto['fecha_fin']; ?>',
+                                                            template = _.template($('#main-example-template').html()),
+                                                            currDate = '00:00:00:00:00',
+                                                            nextDate = '00:00:00:00:00',
+                                                            parser = /([0-9]{2})/gi,
+                                                            //$example = $('#main-example');
+                                                            $example = $('.tiempoRestante');
+                                                    // Parse countdown string to an object
+                                                    function strfobj(str) {
+                                                        var parsed = str.match(parser),
+                                                                obj = {};
+                                                        labels.forEach(function (label, i) {
+                                                            obj[label] = parsed[i]
+                                                        });
+                                                        return obj;
+                                                    }
+                                                    // Return the time components that diffs
+                                                    function diff(obj1, obj2) {
+                                                        var diff = [];
+                                                        labels.forEach(function (key) {
+                                                            if (obj1[key] !== obj2[key]) {
+                                                                diff.push(key);
+                                                            }
+                                                        });
+                                                        return diff;
+                                                    }
+                                                    // Build the layout
+                                                    var initData = strfobj(currDate);
+                                                    labels.forEach(function (label, i) {
+                                                        $example.append(template({
+                                                            curr: initData[label],
+                                                            next: initData[label],
+                                                            label: label
+                                                        }));
+                                                    });
+                                                    // Starts the countdown
+                                                    $example.countdown(nextYear, function (event) {
+                                                        var newDate = event.strftime('%w:%d:%H:%M:%S'),
+                                                                data;
+                                                        if (newDate !== nextDate) {
+                                                            currDate = nextDate;
+                                                            nextDate = newDate;
+                                                            // Setup the data
+                                                            data = {
+                                                                'curr': strfobj(currDate),
+                                                                'next': strfobj(nextDate)
+                                                            };
+                                                            // Apply the new values to each node that changed
+                                                            diff(data.curr, data.next).forEach(function (label) {
+                                                                var selector = '.%s'.replace(/%s/, label),
+                                                                        $node = $example.find(selector);
+                                                                // Update the node
+                                                                $node.removeClass('flip');
+                                                                $node.find('.curr').text(data.curr[label]);
+                                                                $node.find('.next').text(data.next[label]);
+                                                                // Wait for a repaint to then flip
+                                                                _.delay(function ($node) {
+                                                                    $node.addClass('flip');
+                                                                }, 50, $node);
+                                                            });
+                                                        }
+                                                        var days = data['next']['days'];
+                                                        var hours = data['next']['hours'];
+                                                        var seconds = data['next']['seconds'];
+                                                        var minutes = data['next']['minutes'];
+                                                        var weeks = data['next']['weeks'];
+                                                        if (days == '00' && hours == '00' && seconds == '00' && minutes == '00' && weeks == '00') {
+                                                            var ajax_call = function () {
+                                                                $.ajax({
+                                                                    type: 'POST',
+                                                                    url: '<?= URL; ?>producto/liveVideo',
+                                                                    dataType: 'json',
+                                                                    success: function (data) {
+                                                                        $('#liveVideo').css('display', 'block');
+                                                                        if (data == 'noLive') {
+                                                                            $('#liveVideo').html('');
+                                                                            $('#liveVideo').html('<img src="<?= IMAGES; ?>live-video.jpg" />');
+                                                                        } else {
+                                                                            if (contador == 1) {
+                                                                                $('#liveVideo').html('');
+                                                                                $('#liveVideo').html(data);
+                                                                                contador += 1;
+                                                                            }
+                                                                        }
+                                                                    },
+                                                                    error: function () {
+                                                                        // failed request; give feedback to user
+                                                                        $('#liveVideo').html('<p class="error"><strong>Oops!</strong> Ha ocurrido un error.</p>');
+                                                                    }
+                                                                });
+                                                            };
+                                                            setTimeout(ajax_call, 500); //primera ejecucion
+                                                            var interval = 10000; // 1000 = 1s
+                                                            setInterval(ajax_call, interval);
+                                                        }
+                                                    });
+                                                });
+                                            </script>
+                                        <?php else: ?>
+                                            <h4 class="ofertaTitle">Esta oferta ha finalizado</h4>
+                                        <?php endif; ?>
+                                    </div>
+                                    <div id="liveVideo" style="display: none;">
+                                        <?= $liveVideo; ?>
+                                    </div>
+                                    <!--<script type="text/javascript" src="<?= URL; ?>public/pluggins/jquery.countdown/js/jquery.countdown.min.js"></script>-->
+                                    <script type="text/javascript">
+                                        var contador = 1;
+                                        $('#clock').countdown('<?= $producto['fecha_fin']; ?>')
+                                                .on('update.countdown', function (event) {
+                                                    var format = '%H:%M:%S';
+                                                    if (event.offset.totalDays > 0) {
+                                                        format = '%-d day%!d ' + format;
+                                                    }
+                                                    if (event.offset.weeks > 0) {
+                                                        format = '%-w week%!w ' + format;
+                                                    }
+                                                    $(this).html(event.strftime(format));
+                                                })
+                                                .on('finish.countdown', function (event) {
+                                                    $(this).html('Esta oferta ha finalizado')
+                                                            .parent().addClass('disabled');
+                                                    var ajax_call = function () {
+                                                        $.ajax({
+                                                            type: 'POST',
+                                                            url: '<?= URL; ?>producto/liveVideo',
+                                                            dataType: 'json',
+//                                                            beforeSend: function () {
+//                                                                if (contador == 1) {
+//                                                                    $('#liveVideo').css('display', 'block');
+//                                                                    $('#liveVideo').html('');
+//                                                                    $('#liveVideo').html('<div class="loading"><img src="<?= IMAGES; ?>loader.gif" alt="Loading..." /></div>');
+//                                                                }
+//                                                            },
+                                                            success: function (data) {
+                                                                $('#liveVideo').css('display', 'block');
+                                                                if (data == 'noLive') {
+                                                                    $('#liveVideo').html('');
+                                                                    $('#liveVideo').html('<img src="<?= IMAGES; ?>live-video.jpg" />');
+                                                                } else {
+                                                                    if (contador == 1) {
+                                                                        $('#liveVideo').html('');
+                                                                        $('#liveVideo').html(data);
+                                                                        contador += 1;
+                                                                    }
+                                                                }
+                                                            },
+                                                            error: function () {
+                                                                // failed request; give feedback to user
+                                                                $('#liveVideo').html('<p class="error"><strong>Oops!</strong> Ha ocurrido un error.</p>');
+                                                            }
+                                                        });
+                                                    };
+                                                    var interval = 10000; // 1000 = 1s
+                                                    setInterval(ajax_call, interval); //ejecutamos
+                                                });
+                                    </script>
                                 </div>
                                 <div class="ratings">
                                     <div class="rating-box">
