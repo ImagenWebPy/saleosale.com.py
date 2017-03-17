@@ -60,7 +60,7 @@
                     <i class="add-icon">&nbsp;</i>Santa Rosa 668 c/ España <br>
                     &nbsp;Asunción - Paraguay 
                 </address>
-                <div class="phone-footer"><i class="phone-icon">&nbsp;</i> (+595 021) 328 3400 </div>
+                <div class="phone-footer"><i class="phone-icon">&nbsp;</i> (+595 021) 224 500 </div>
                 <div class="email-footer"><i class="email-icon">&nbsp;</i> <a href="mailto:info@saleosale.com.py">info@saleosale.com.py</a> </div>
             </div>
         </div>

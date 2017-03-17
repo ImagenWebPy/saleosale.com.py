@@ -155,11 +155,11 @@ class Helper {
                                 <span>Envíos a todo el País</span>
                             </div>
                         </div>-->
-                        <div class="col-lg-3 col-sm-6 col-xs-12">
+                        <!--<div class="col-lg-3 col-sm-6 col-xs-12">
                             <div class="content">
                                 <div class="icon-support">&nbsp;</div>
                                 <span>Servicio de Atención al Cliente</span></div>
-                        </div>
+                        </div>-->
                     </div>
                 </div>
             </div>

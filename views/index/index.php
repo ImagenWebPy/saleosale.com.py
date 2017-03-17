@@ -52,7 +52,7 @@ if (isset($_SESSION['message'])) {
 </div>
 <!-- end offer banner section --> 
 <!-- main container -->
-<section class="main-container col1-layout home-content-container">
+<!--<section class="main-container col1-layout home-content-container">
     <div class="container">
         <div class="std">
             <div class="best-seller-pro wow bounceInUp animated">
@@ -63,10 +63,10 @@ if (isset($_SESSION['message'])) {
                     <div id="best-seller-slider" class="product-flexslider hidden-buttons">
                         <div class="slider-items slider-width-col4"> 
                             <?php
-                            $masvistos = $helper->productoDestacado(1, 'ASC');
-                            foreach ($masvistos as $vistos) {
-                                echo $vistos;
-                            }
+//                            $masvistos = $helper->productoDestacado(1, 'ASC');
+//                            foreach ($masvistos as $vistos) {
+//                                echo $vistos;
+//                            }
                             ?>
                         </div>
                     </div>
@@ -74,7 +74,7 @@ if (isset($_SESSION['message'])) {
             </div>
         </div>
     </div>
-</section>
+</section>-->
 <!-- End main container --> 
 <!-- Featured Slider -->
 <section class="featured-pro wow animated parallax parallax-2">
@@ -82,15 +82,15 @@ if (isset($_SESSION['message'])) {
         <div class="std">
             <div class="slider-items-products">
                 <div class="featured_title center">
-                    <h2>Productos Destacados</h2>
+                    <!--<h2>Productos Destacados</h2>-->
                 </div>
                 <div id="featured-slider" class="product-flexslider hidden-buttons">
                     <div class="slider-items slider-width-col4"> 
                         <?php
-                        $destacados = $helper->productoDestacado(2, 'ASC');
-                        foreach ($destacados as $destacado) {
-                            echo $destacado;
-                        }
+//                        $destacados = $helper->productoDestacado(2, 'ASC');
+//                        foreach ($destacados as $destacado) {
+//                            echo $destacado;
+//                        }
                         ?>
                     </div>
                 </div>
@@ -101,7 +101,7 @@ if (isset($_SESSION['message'])) {
 <!-- End Featured Slider --> 
 
 <!-- middle slider -->
-<section class="middle-slider container">
+<!--<section class="middle-slider container">
     <div class="row">
         <div class="col-sm-4 wow bounceInUp">
             <div class="inner-div">
@@ -109,10 +109,10 @@ if (isset($_SESSION['message'])) {
                 <div class="category-products">
                     <div class="products small-list">
                         <?php
-                        $catDestacados = $helper->mostrarCatIndex(4);
-                        foreach ($catDestacados as $categoria) {
-                            echo $categoria;
-                        }
+//                        $catDestacados = $helper->mostrarCatIndex(4);
+//                        foreach ($catDestacados as $categoria) {
+//                            echo $categoria;
+//                        }
                         ?>
                     </div>
                 </div>
@@ -124,10 +124,10 @@ if (isset($_SESSION['message'])) {
                 <div class="category-products">
                     <div class="products small-list">
                         <?php
-                        $catDestacados = $helper->mostrarCatIndex(5);
-                        foreach ($catDestacados as $categoria) {
-                            echo $categoria;
-                        }
+//                        $catDestacados = $helper->mostrarCatIndex(5);
+//                        foreach ($catDestacados as $categoria) {
+//                            echo $categoria;
+//                        }
                         ?>
                     </div>
                 </div>
@@ -139,17 +139,17 @@ if (isset($_SESSION['message'])) {
                 <div class="category-products">
                     <div class="products small-list">
                         <?php
-                        $catDestacados = $helper->mostrarCatIndex(6);
-                        foreach ($catDestacados as $categoria) {
-                            echo $categoria;
-                        }
+//                        $catDestacados = $helper->mostrarCatIndex(6);
+//                        foreach ($catDestacados as $categoria) {
+//                            echo $categoria;
+//                        }
                         ?>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-</section>
+</section>-->
 <!-- End middle slider --> 
 <!-- promo banner section -->
 <!--<div class="promo-banner-section container wow bounceInUp animated">
@@ -159,7 +159,7 @@ if (isset($_SESSION['message'])) {
 </div>-->
 <!-- End promo banner section --> 
 <!-- recommend slider -->
-<section class="recommend container">
+<!--<section class="recommend container">
     <div class="recommend-product-slider small-pr-slider wow bounceInUp">
         <div class="slider-items-products">
             <div class="new_title center">
@@ -168,16 +168,16 @@ if (isset($_SESSION['message'])) {
             <div id="recommend-slider" class="product-flexslider hidden-buttons">
                 <div class="slider-items slider-width-col3"> 
                     <?php
-                    $recomendados = $helper->productoDestacado(3, 'ASC');
-                    foreach ($recomendados as $recomendado) {
-                        echo $recomendado;
-                    }
+//                    $recomendados = $helper->productoDestacado(3, 'ASC');
+//                    foreach ($recomendados as $recomendado) {
+//                        echo $recomendado;
+//                    }
                     ?>
                 </div>
             </div>
         </div>
     </div>
-</section>
+</section>-->
 <!-- End Recommend slider --> 
 <!-- Latest Blog -->
 <!--<section class="latest-blog container">

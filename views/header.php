@@ -113,9 +113,9 @@ $carrito = new Carrito();
                         </div>
                         <div class="col-lg-6 col-sm-5 col-md-6 col-xs-12"> 
                             <!-- Search-col -->
-                            <div class="search-box">
-                                <?php echo $helper->busquedaCategorias(); ?>
-                            </div>
+<!--                            <div class="search-box">
+                                <?php //echo $helper->busquedaCategorias(); ?>
+                            </div>-->
                             <!-- End Search-col --> 
                         </div>
                         <?php if (empty($_SESSION['cliente'])): ?>
