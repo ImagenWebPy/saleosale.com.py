@@ -2498,8 +2498,8 @@ class Helper {
         $sqlEmails = $this->db->select("select valor from cms_config_sitio ccs where ccs.clave = '$clave'");
         return $sqlEmails[0]['valor'];
     }
-    
-    public function getDatosCupon($idPedido){
+
+    public function getDatosCupon($idPedido) {
         $datos = $this->db->select("SELECT cc.nro_cupon, 
                                             c.fecha_sorteo,
                                             (SELECT nombre from pedido p LEFT JOIN pedido_detalle pd on pd.id_pedido = p.id LEFT JOIN producto po on po.id = pd.id_producto where pd.id = cc.id_pedido_detalle limit 1) as producto
@@ -2508,4 +2508,27 @@ class Helper {
                                     where cc.id_pedido = $idPedido;");
         return $datos;
     }
+
+    public function getProductosSlider() {
+        $sql = $this->db->select('SELECT p.id, 
+                                        p.codigo,
+                                        p.nombre,
+                                        p.descripcion,
+                                        p.imagen,
+                                        p.precio,
+                                        p.precio_oferta,
+                                        p.fecha_fin,
+                                        p.img_destacada,
+                                        c.descripcion as categoria,
+                                        m.descripcion as marca,
+                                        mo.descripcion as moneda,
+                                        mo.simbolo
+                                    FROM producto p 
+                                    LEFT JOIN categoria c on c.id = p.id_categoria
+                                    LEFT JOIN marca m on m.id = p.id_marca
+                                    LEFT JOIN moneda mo on mo.id = p.id_moneda
+                                    where p.destacado = 1');
+        return $sql;
+    }
+
 }
