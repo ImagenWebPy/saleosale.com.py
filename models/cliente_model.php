@@ -93,12 +93,12 @@ class Cliente_Model extends Model {
                         <ul>
                             <li ' . $panel . ' ><a href="' . URL . 'cliente/dashboard/">Panel de la Cuenta</a></li>
                             <li ' . $cuenta . ' ><a href="' . URL . 'cliente/cuenta/">Informacion de la Cuenta</a></li>
-                            <li ' . $direccion . ' ><a href="' . URL . 'cliente/direcciones/">Direcciones</a></li>
-                            <li ' . $compras . ' ><a href="' . URL . 'cliente/compras/">Mis Compras</a></li>
+                            <!--<li ' . $direccion . ' ><a href="' . URL . 'cliente/direcciones/">Direcciones</a></li>-->
+                            <li ' . $compras . ' ><a href="' . URL . 'cliente/compras/">Mis Cupones</a></li>
                             <!--<li ' . $revisiones . ' ><a href="' . URL . 'cliente/revisiones/">Mis Revisiones</a></li>-->
-                            <li ' . $lista . ' ><a href="' . URL . 'cliente/lista_deseos/">Mi Lista de Deseos</a></li>
+                            <!--<li ' . $lista . ' ><a href="' . URL . 'cliente/lista_deseos/">Mi Lista de Deseos</a></li>-->
                             <li ' . $newsletter . ' ><a href="' . URL . 'cliente/newsletter/">Subscripción al Newsletter</a></li>
-                            <li ' . $subasta . ' class="btn btn-success btn-block"><a href="' . URL . 'cliente/subasta/" style=" color: #fff; font-weight:bold;">Subasta</a></li>
+                            <!--<li ' . $subasta . ' class="btn btn-success btn-block"><a href="' . URL . 'cliente/subasta/" style=" color: #fff; font-weight:bold;">Subasta</a></li>-->
                         </ul>
                     </div>
                 </div>

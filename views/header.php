@@ -22,6 +22,7 @@ $carrito = new Carrito();
         <link rel="stylesheet" href="<?php echo URL; ?>public/css/revslider.css" type="text/css">
         <link rel="stylesheet" href="<?php echo URL; ?>public/css/owl.carousel.css" type="text/css">
         <link rel="stylesheet" href="<?php echo URL; ?>public/css/owl.theme.css" type="text/css">
+        <link rel="stylesheet" href="<?php echo URL; ?>public/css/responsive.css" type="text/css">
         <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css" type="text/css" rel="stylesheet" >
         <!--<link rel="stylesheet" href="<?php echo URL; ?>public/css/font-awesome.css" type="text/css">-->
         <!-- Google Fonts -->
@@ -94,7 +95,7 @@ $carrito = new Carrito();
                                     <div class="toplinks">
                                         <div class="links">
                                             <div class="myaccount"><a title="Mi Cuenta" href="<?php echo URL ?>cliente/dashboard/"><span class="hidden-xs">Mi Cuenta</span></a></div>
-                                            <div class="wishlist"><a title="Lista de Deseos"  href="<?php echo URL ?>cliente/lista_deseos/"><span class="hidden-xs">Lista de Deseos</span></a></div>
+                                            <!--<div class="wishlist"><a title="Lista de Deseos"  href="<?php echo URL ?>cliente/lista_deseos/"><span class="hidden-xs">Lista de Deseos</span></a></div>-->
                                             <div class="check"><a title="Comprar" href="<?php echo URL ?>cart/carrito_resumen"><span class="hidden-xs">Carrito</span></a></div>
                                         </div>
                                     </div>
@@ -115,7 +116,9 @@ $carrito = new Carrito();
                             <!-- Search-col -->
 <!--                            <div class="search-box">
                                 <?php //echo $helper->busquedaCategorias(); ?>
+                                
                             </div>-->
+                            <img src="<?= URL; ?>public/images/banner_top_sos.jpg" class="img-responsive" />
                             <!-- End Search-col --> 
                         </div>
                         <?php if (empty($_SESSION['cliente'])): ?>

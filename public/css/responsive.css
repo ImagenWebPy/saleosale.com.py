@@ -1,0 +1,28 @@
+@media (min-width: 769px) and (max-width: 900px) {
+    .contadorSlider{
+        position: relative;
+        top: -90px;
+        float: right;
+        right: -60px;
+    }
+}
+@media (min-width: 481px) and (max-width: 768px) {
+    .contadorSlider{
+        position: relative;
+        top: -90px;
+        float: right;
+        right: -350px;
+    }
+}
+
+@media (min-width: 321px) and (max-width: 480px) {
+    .contadorSlider{
+        display: none;
+    } 
+}
+
+@media (max-width: 320px) {
+    .contadorSlider{
+        display: none;
+    }
+}

@@ -72,7 +72,7 @@
                                     <a href="<?php echo URL; ?>cliente/newsletter">Editar Suscripción</a>
                                 </div>
                             </div>
-                            <div class="col2-set">
+<!--                            <div class="col2-set">
                                 <h4 class="text-primary"><strong>Direcciones</strong></h4>
                                 <div class="manage_add"><a href="<?php echo URL; ?>cliente/direcciones/">Administrar Direcciones</a> </div>
                                 <div class="col-1">
@@ -84,7 +84,7 @@
                                         <?php echo $helper->messageAlert('info', 'No tiene asignada ninguna dirección de envío'); ?>
                                     <?php endif; ?>
                                 </div>
-                            </div>
+                            </div>-->
                         </div>
                     </div>
                 </div>

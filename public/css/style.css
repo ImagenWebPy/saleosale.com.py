@@ -11250,3 +11250,9 @@ select {
     color: #5d5c5c;
     font-size: 20px;
 }
+.contadorSlider{
+    position: relative;
+    top: -90px;
+    float: right;
+    right: -60px;
+}
